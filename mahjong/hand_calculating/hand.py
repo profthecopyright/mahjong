@@ -189,6 +189,11 @@ class HandCalculator(object):
                 if self.config.yaku.chinroto.is_condition_met(hand):
                     hand_yaku.append(self.config.yaku.chinroto)
 
+                if self.config.paarenchan > 0 and not self.config.options.paarenchan_needs_yaku:
+                    # if no yaku is even needed to win on paarenchan and it is paarenchan condition, just add paarenchan
+                    self.config.yaku.paarenchan.set_paarenchan_count(self.config.paarenchan)
+                    hand_yaku.append(self.config.yaku.paarenchan)
+
                 # small optimization, try to detect yaku with chi required sets only if we have chi sets in hand
                 if len(chi_sets):
                     if self.config.yaku.chanta.is_condition_met(hand):
@@ -292,6 +297,11 @@ class HandCalculator(object):
                     if self.config.yaku.suukantsu.is_condition_met(hand, melds):
                         hand_yaku.append(self.config.yaku.suukantsu)
 
+                if self.config.paarenchan > 0 and self.config.options.paarenchan_needs_yaku and len(hand_yaku) > 0:
+                    # we waited until here to add paarenchan yakuman only if there is any other yaku
+                    self.config.yaku.paarenchan.set_paarenchan_count(self.config.paarenchan)
+                    hand_yaku.append(self.config.yaku.paarenchan)
+
                 # yakuman is not connected with other yaku
                 yakuman_list = [x for x in hand_yaku if x.is_yakuman]
                 if yakuman_list:
@@ -380,6 +390,10 @@ class HandCalculator(object):
 
             if self.config.is_chiihou:
                 hand_yaku.append(self.config.yaku.chiihou)
+
+            if self.config.paarenchan > 0:
+                self.config.yaku.paarenchan.set_paarenchan_count(self.config.paarenchan)
+                hand_yaku.append(self.config.yaku.paarenchan)
 
             # calculate han
             han = 0
