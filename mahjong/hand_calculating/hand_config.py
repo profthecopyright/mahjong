@@ -29,6 +29,8 @@ class OptionalRules(object):
     has_daisharin=False
     has_daisharin_other_suits=False
     has_daichisei=False
+    has_sashikomi_yakuman=False
+    limit_to_sextuple_yakuman=True,
 
     def __init__(self, has_open_tanyao=False,
                         has_aka_dora=False,
@@ -40,7 +42,9 @@ class OptionalRules(object):
                         renhou_as_yakuman=False,
                         has_daisharin=False,
                         has_daisharin_other_suits=False,
-                        has_daichisei=False):
+                        has_daichisei=False,
+                        has_sashikomi_yakuman=False,
+                        limit_to_sextuple_yakuman=True):
 
         self.has_open_tanyao = has_open_tanyao
         self.has_aka_dora = has_aka_dora
@@ -53,6 +57,8 @@ class OptionalRules(object):
         self.has_daisharin = has_daisharin or has_daisharin_other_suits
         self.has_daisharin_other_suits = has_daisharin_other_suits
         self.has_daichisei = has_daichisei
+        self.has_sashikomi_yakuman = has_sashikomi_yakuman
+        self.limit_to_sextuple_yakuman = limit_to_sextuple_yakuman
 
 
 class HandConfig(HandConstants):
@@ -74,6 +80,7 @@ class HandConfig(HandConstants):
     is_tenhou = False
     is_renhou = False
     is_chiihou = False
+    is_open_riichi = False
 
     is_dealer = False
     player_wind = None
@@ -92,6 +99,7 @@ class HandConfig(HandConstants):
                  is_tenhou=False,
                  is_renhou=False,
                  is_chiihou=False,
+                 is_open_riichi=False,
                  player_wind=None,
                  round_wind=None,
                  options=None):
@@ -111,6 +119,7 @@ class HandConfig(HandConstants):
         self.is_tenhou = is_tenhou
         self.is_renhou = is_renhou
         self.is_chiihou = is_chiihou
+        self.is_open_riichi = is_open_riichi
 
         self.player_wind = player_wind
         self.round_wind = round_wind
