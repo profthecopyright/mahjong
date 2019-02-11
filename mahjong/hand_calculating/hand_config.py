@@ -28,6 +28,7 @@ class OptionalRules(object):
     renhou_as_yakuman = False
     has_daisharin=False
     has_daisharin_other_suits=False
+    has_daichisei=False
 
     def __init__(self, has_open_tanyao=False,
                         has_aka_dora=False,
@@ -38,7 +39,8 @@ class OptionalRules(object):
                         fu_for_pinfu_tsumo=False,
                         renhou_as_yakuman=False,
                         has_daisharin=False,
-                        has_daisharin_other_suits=False):
+                        has_daisharin_other_suits=False,
+                        has_daichisei=False):
 
         self.has_open_tanyao = has_open_tanyao
         self.has_aka_dora = has_aka_dora
@@ -50,6 +52,7 @@ class OptionalRules(object):
         self.renhou_as_yakuman = renhou_as_yakuman
         self.has_daisharin = has_daisharin or has_daisharin_other_suits
         self.has_daisharin_other_suits = has_daisharin_other_suits
+        self.has_daichisei = has_daichisei
 
 
 class HandConfig(HandConstants):
